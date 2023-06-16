@@ -1,0 +1,118 @@
+body{
+    background-color: azure;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    height: 97vh;
+}
+
+h1 , h3{
+	text-align: center;
+}
+
+h1 {
+	color: orangered;
+	font-size: 45px;
+}
+
+.board {
+	display: grid;
+	justify-content: center;
+	align-content: center;
+	justify-items: center;
+	align-items: center;
+	grid-template-columns: repeat(3, auto)
+}
+
+.cell {
+	width: 100px;
+	height: 100px;
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+}
+
+/* remove border for edges */
+.cell:nth-child(1), .cell:nth-child(2), .cell:nth-child(3) {
+	border-top: none;
+}
+
+.cell:nth-child(1), .cell:nth-child(4), .cell:nth-child(7) {
+	border-left: none;
+}
+
+.cell:nth-child(3), .cell:nth-child(6), .cell:nth-child(9) {
+	border-right: none;
+}
+
+.cell:nth-child(7), .cell:nth-child(8), .cell:nth-child(9) {
+	border-bottom: none;
+}
+
+.cell.x, .cell.circle {
+	cursor: not-allowed;
+}
+
+/* for cross */
+.board.x .cell:not(.circle):not(.x):hover {
+	background: linear-gradient(to top right, transparent calc(50% - 10px / 2), #81c3fd calc(50% - 10px / 2) calc(50% + 10px / 2), transparent calc(50% + 10px / 2)),
+				linear-gradient(to bottom right, transparent calc(50% - 10px / 2), #81c3fd calc(50% - 10px / 2) calc(50% + 10px / 2), transparent calc(50% + 10px / 2));
+	background-size: 80% 80%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+/* for cross (set) */
+.cell:not(.circle).x {
+	background: linear-gradient(to top right, transparent calc(50% - 10px / 2), #0275d8 calc(50% - 10px / 2) calc(50% + 10px / 2), transparent calc(50% + 10px / 2)),
+				linear-gradient(to bottom right, transparent calc(50% - 10px / 2), #0275d8 calc(50% - 10px / 2) calc(50% + 10px / 2), transparent calc(50% + 10px / 2));
+	background-size: 80% 80%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+/* for circle */
+.board.circle .cell:not(.circle):not(.x):hover {	
+	background: radial-gradient(#81c3fd 60%, transparent 60%);
+}
+
+/* for circle (set) */
+.cell:not(.x).circle {
+	background: radial-gradient(#0275d8 60%, transparent 60%);
+}
+
+.winning-message {
+	display: none;
+	background-color: cadetblue;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	font-size: 4rem;
+	font-family: 'Courier New', Courier, monospace;
+	flex-direction: column;
+	text-align: center;
+}
+
+.winning-message button {
+	margin-top: 25px;
+	border-radius: 10px;
+	font-size: 3rem;
+	background-color: white;
+	border: 1px solid #0275d8;
+	padding: .25em .5em;
+	cursor: pointer;
+}
+
+.winning-message button:hover {
+	background-color: #0275d8;
+	color: white;
+	border-color: white;
+}
+
+.winning-message.show {
+	display: flex;
+}
